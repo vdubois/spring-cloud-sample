@@ -8,6 +8,6 @@ node('master') {
     sh "docker run --rm -v ${pwd()}/spring-cloud-sample-eureka-server:/tmp -w /tmp --volumes-from=${dataContainer} mvn clean package docker:build"
   } finally {
     sh "docker stop ${dataContainer}|true"
-    sh "docker rm -v -f ${dataContainer}|true
+    sh "docker rm -v -f ${dataContainer}|true"
   }
 }
