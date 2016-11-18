@@ -13,11 +13,10 @@ node('master') {
       sh "docker rm -v -f ${dataContainer}|true"
     }
   }
-
-  def buildModule(moduleName) {
-    dir(moduleName) {
-      git url: "https://github.com/vdubois/${moduleName}"
-      sh "docker run --rm -v ${env.WORKSPACE_DIRECTORY}/spring-cloud-sample/${moduleName}:/tmp -v /var/run/docker.sock:/var/run/docker.sock -w /tmp --volumes-from=${dataContainer} vdubois/maven:3.3.9-jdk8 mvn clean package docker:build"
-    }
+}
+def buildModule(moduleName) {
+  dir(moduleName) {
+    git url: "https://github.com/vdubois/${moduleName}"
+    sh "docker run --rm -v ${env.WORKSPACE_DIRECTORY}/spring-cloud-sample/${moduleName}:/tmp -v /var/run/docker.sock:/var/run/docker.sock -w /tmp --volumes-from=${dataContainer} vdubois/maven:3.3.9-jdk8 mvn clean package docker:build"
   }
 }
