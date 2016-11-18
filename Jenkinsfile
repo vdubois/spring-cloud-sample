@@ -1,5 +1,5 @@
+def dataContainer = "SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER"
 node('master') {
-  def dataContainer = "SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER"
   sh "rm -rf *"
   try {
     sh "docker create -v /home/developer/.m2/repository/ --name ${dataContainer} busybox /bin/true"
