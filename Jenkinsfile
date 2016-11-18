@@ -8,10 +8,8 @@ node('master') {
       buildModule('spring-cloud-sample-eureka-server')
     }
   } finally {
-    stage concurrency: 1, name: 'CLEAN' {
-      sh "docker stop ${dataContainer}|true"
-      sh "docker rm -v -f ${dataContainer}|true"
-    }
+    sh "docker stop ${dataContainer}|true"
+    sh "docker rm -v -f ${dataContainer}|true"
   }
 }
 def buildModule(moduleName) {
