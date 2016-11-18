@@ -3,13 +3,14 @@ node('master') {
   sh "rm -rf *"
   try {
     sh "docker create -v /home/developer/.m2/repository/ --name ${dataContainer} busybox /bin/true"
-    stage concurrency: 1, name: 'BUILD' {
+    stage 'BUILD' 
       buildModule('spring-cloud-sample-config-server')
       buildModule('spring-cloud-sample-eureka-server')
-    }
+    
   } finally {
-    sh "docker stop ${dataContainer}|true"
-    sh "docker rm -v -f ${dataContainer}|true"
+    stage 'CLEAN'
+      sh "docker stop ${dataContainer}|true"
+      sh "docker rm -v -f ${dataContainer}|true"
   }
 }
 def buildModule(moduleName) {
