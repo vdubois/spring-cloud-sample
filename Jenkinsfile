@@ -12,7 +12,7 @@ node('master') {
   }
 }
 def buildModule(moduleName) {
-  def jenkinsWorkspace = "/var/jenkins_home"
+  def jenkinsWorkspace = "/var/jenkins_home/workspace"
   dir(moduleName) {
     git url: "https://github.com/vdubois/${moduleName}"
     stage 'BUILD_JAR'
