@@ -17,8 +17,8 @@ def buildModule(moduleName) {
     stage 'BUILD_JAR'
       sh "docker run --rm -v ${pwd()}:/tmp -v /var/run/docker.sock:/var/run/docker.sock -w /tmp --volumes-from=SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER vdubois/maven:3.3.9-jdk8 mvn clean package"
     stage 'BUILD_DOCKER_IMAGE'
-      def pom = readMavenPom file: "${moduleName}/pom.xml"
-      sh "cp ${moduleName}/target/*.jar module.jar"
+      def pom = readMavenPom file: "pom.xml"
+      sh "cp target/*.jar module.jar"
       sh "docker build -t vdubois/${moduleName}:${pom.version} ."
     stage 'PUSH_DOCKER_IMAGE'
       sh "docker push vdubois/${moduleName}:${pom.version}"
