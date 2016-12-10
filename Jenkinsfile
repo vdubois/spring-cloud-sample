@@ -19,7 +19,7 @@ def buildModule(moduleName) {
       sh "cp target/*.jar ../module.jar"
   }
   stage 'BUILD_DOCKER_IMAGE'
-    def pom = readMavenPom file: "pom.xml"
+    def pom = readMavenPom file: "${moduleName}/pom.xml"
     sh "docker build -t vdubois/${moduleName}:${pom.version} ."
   stage 'PUSH_DOCKER_IMAGE'
     sh "docker push vdubois/${moduleName}:${pom.version}"
