@@ -1,8 +1,8 @@
 pipelineModule = "spring-cloud-sample"
 node('jenkins-slave') {
-  git url: "https://github.com/vdubois/${pipelineModule}"
-  def dataContainer = "SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER"
   sh "rm -rf *"
+  checkout scm
+  def dataContainer = "SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER"
   try {
     sh "docker create -v /home/developer/.m2/repository/ --name ${dataContainer} busybox /bin/true"
     stage 'BUILD'
