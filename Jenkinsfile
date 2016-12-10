@@ -1,4 +1,5 @@
 node('jenkins-slave') {
+  checkout scm
   def dataContainer = "SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER"
   sh "rm -rf *"
   try {
