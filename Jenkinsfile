@@ -3,8 +3,11 @@ node('jenkins-slave') {
   sh "rm -rf *"
   checkout scm
   def dataContainer = "SPRING-CLOUD-SAMPLE-MVN-DATA-CONTAINER"
+  dir('maven-settings') {
+    git url: "https://github.com/vdubois/maven-settings"
+  }
   try {
-    sh "docker create -v /home/developer/.m2/repository/ --name ${dataContainer} busybox /bin/true"
+    sh "docker create -v /home/developer/.m2/repository/ -v ${pwd()}/maven-settings/settings.xml:/home/developer/.m2/settings.xml --name ${dataContainer} busybox /bin/true"
     stage 'BUILD'
       buildModule("${moduleToBuild}")
   } finally {
