@@ -25,7 +25,7 @@ def buildModule(moduleName) {
   }
   stage 'BUILD_DOCKER_IMAGE'
     def pom = readMavenPom file: "${moduleName}/pom.xml"
-    sh "docker build -t vdubois/${moduleName}:${pom.version} ."
+    sh "docker build -t registry:5000/vdubois/${moduleName}:${pom.version} ."
   stage 'PUSH_DOCKER_IMAGE'
-    sh "docker push vdubois/${moduleName}:${pom.version}"
+    sh "docker push registry:5000/vdubois/${moduleName}:${pom.version}"
 }
