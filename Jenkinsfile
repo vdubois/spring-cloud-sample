@@ -15,6 +15,7 @@ node('jenkins-slave') {
       sh "docker stop ${dataContainer}|true"
       sh "docker rm -v -f ${dataContainer}|true"
   }
+  pragprog displayLanguageCode: 'en', indicateBuildResult: true
 }
 def buildModule(moduleName) {
   dir(moduleName) {
