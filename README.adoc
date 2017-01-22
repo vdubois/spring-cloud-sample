@@ -1,0 +1,9 @@
+= Spring Cloud Sample
+
+== Goal
+
+Make a lightweight but full featured sample microservices app using Spring Cloud modules.
+
+== Features
+
+== Architecture schema
