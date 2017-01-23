@@ -14,7 +14,7 @@ Make a lightweight but full featured sample microservices app using Spring Cloud
 * Circuit breaker aggregation using Turbine
 * API aggregation using RxJava
 * Distributed caching using Hazelcast
-* Distributed logging using Zipkin
+* Distributed tracing using Zipkin
 * Microservices dashboard app using spring-boot-admin
 
 == Architecture schema
